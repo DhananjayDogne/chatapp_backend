@@ -17,6 +17,7 @@ const io = socketIO(server, {
 // Use CORS middleware
 app.use(cors({
     origin: '*',
+    methods: ["GET", "POST"]
 }));
 
 const broadcasters = {}; // Store broadcaster sockets
@@ -97,6 +98,10 @@ io.on('connection', (socket) => {
             socket.leave(room);
         });
     });
+});
+
+app.get('/', (req, res) => { 
+    res.send('Hello World!'); 
 });
 
 const PORT = 8000;
